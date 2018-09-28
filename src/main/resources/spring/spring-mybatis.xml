@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ====================针对c3p0的连接池配置项============================== -->
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+
+        <property name="driverClass"   value="${db_driver}" />
+        <property name="jdbcUrl" value="${db_url}"/>
+        <property name="user" value="${db_user}"/>
+        <property name="password" value="${db_passwd}"/>
+
+
+        <property name="minPoolSize" value="${db_minpoolsize}" />
+        <property name="maxPoolSize" value="${db_maxpoolsize}" />
+        <property name="initialPoolSize" value="${db_initialpoolsize}" />
+        <property name="maxIdleTime" value="${db_maxidleTime}"/>
+        <property name="checkoutTimeout" value="${db_checkoutTimeout}"/>
+
+
+        <property name="acquireIncrement" value="${db_acquireIncrement}"/>
+        <property name="acquireRetryAttempts" value="${db_acquireRetryAttempts}"/>
+        <property name="acquireRetryDelay" value="${db_acquireRetryDelay}" />
+        <property name="idleConnectionTestPeriod" value="${db_idleConnectionTestPeriod}" />
+        <property name="autoCommitOnClose" value="false" />
+        <property name="maxStatements" value="${db_maxStatements}" />
+        <property name="maxStatementsPerConnection" value="${db_maxStatementsPerConnection}" />
+    </bean>
+
+    <!--配置SqlSessionFactory对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--往下才是mybatis和spring真正整合的配置-->
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置mybatis全局配置文件:mybatis-config.xml-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--扫描entity包,使用别名,多个用;隔开-->
+        <property name="typeAliasesPackage" value="com.practice.bean"/>
+        <!--扫描sql配置文件:mapper需要的xml文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+
+    <!-- 配置mybatis扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.practice.dao" />
+    </bean>
+</beans>
