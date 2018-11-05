@@ -1,6 +1,7 @@
 package com.practice.exception;
 
 /**
+ * 自定义业务异常
  * @author jinmeng on 2018/9/27.
  * @version 1.0
  */

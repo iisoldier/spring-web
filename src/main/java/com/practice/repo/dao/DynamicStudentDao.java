@@ -1,6 +1,5 @@
-package com.practice.dao;
+package com.practice.repo.dao;
 
-import com.practice.bean.Student;
 import com.practice.repo.provider.DynamicSelectProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -14,15 +13,24 @@ import java.util.Map;
  * Time: 19:35
  */
 @Repository
-public interface StudentDao {
+public interface DynamicStudentDao {
+
+    String tableName = "Student";
 
 
     /**
-     * 根据id获取学生信息
+     * 根据id获取学生信息 另一种实现形式
      * @param id
      * @return
      */
-    Student getById(int id);
+    @SelectProvider(type = DynamicSelectProvider.class,method = "selectByPK")
+    Map<String,Object> get(@Param("id") Integer id);
+
+
+
+
+
+
 
 
 
