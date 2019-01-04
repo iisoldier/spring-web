@@ -14,8 +14,8 @@ import org.springframework.web.context.request.WebRequest;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    /** Provides handling for exceptions throughout this service. */
 
+    /** Provides handling for exceptions throughout this service. */
     @ExceptionHandler({ BizException.class})
     @ResponseBody
     public final ServiceResult handleException(Exception ex, WebRequest request) {

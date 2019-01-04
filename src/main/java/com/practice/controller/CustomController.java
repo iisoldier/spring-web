@@ -15,18 +15,16 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/custom")
-public class CustomizeController {
+public class CustomController {
 
     @RequestMapping("/student")
     @RestFilter
     public Student getById(HttpServletRequest request){
-
 
         Student student = new Student();
         student.setId(1);
         student.setAge(18);
         student.setName("Bob");
         return  student;
-
     }
 }
