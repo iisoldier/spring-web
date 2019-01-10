@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
+ * ResponseBodyAdvice 只有当controller返回体是@ResponseBody 或者@RestController 才会生效
  * @author jinmeng on 2018/9/27.
  * @version 1.0
  */
 @ControllerAdvice
-public class RestFilterAdvice implements ResponseBodyAdvice {
+public class MyResponseBodyAdvice implements ResponseBodyAdvice {
 
 
     @Override

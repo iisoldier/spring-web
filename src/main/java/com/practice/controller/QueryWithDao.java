@@ -1,15 +1,15 @@
 package com.practice.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.practice.aop.RestFilter;
 import com.practice.bean.Student;
 import com.practice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Author: jinmeng
@@ -25,9 +25,21 @@ public class QueryWithDao {
 
     @RequestMapping("/student")
     @RestFilter
-    public Student getById(HttpServletRequest request){
+    public Student getById(HttpServletRequest request, @RequestParam Integer id){
 
-        int id = Integer.valueOf(request.getParameter("id"));
+
+        return studentService.getById(id);
+
+    }
+
+    @RequestMapping(value = "/student/post",method = RequestMethod.POST)
+    @RestFilter
+    public Student getById(HttpServletRequest request, @RequestBody JSONObject jsonObject){
+
+        Integer id = jsonObject.getInteger("id");
+        if(id == null){
+            return null;
+        }
         return studentService.getById(id);
 
     }
