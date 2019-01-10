@@ -15,11 +15,9 @@ import java.io.OutputStream;
  */
 public class BizMessageConverter extends FastJsonHttpMessageConverter {
 
-
     @Override
     protected void writeInternal(Object obj, HttpOutputMessage outputMessage) throws IOException,
             HttpMessageNotWritableException {
-
 
         ServiceResult serviceResult = new ServiceResult();
         if(!(obj instanceof ServiceResult)){

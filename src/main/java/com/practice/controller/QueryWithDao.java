@@ -28,6 +28,9 @@ public class QueryWithDao {
     public Student getById(HttpServletRequest request, @RequestParam Integer id){
 
 
+        if(id == 13){
+            throw new NullPointerException();
+        }
         return studentService.getById(id);
 
     }
