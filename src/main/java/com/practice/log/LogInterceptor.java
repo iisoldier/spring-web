@@ -1,10 +1,12 @@
 package com.practice.log;
 
-import org.apache.log4j.Logger;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogInterceptor {
 
-    Logger logger = Logger.getLogger(LogInterceptor.class);
+    private static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 
     @Pointcut("execution(* com.practice.service.*.*(..))")
     private void actionMethod() {
@@ -23,7 +25,6 @@ public class LogInterceptor {
 
     @Around("actionMethod()")
     public Object interceptor(ProceedingJoinPoint pjp) throws Throwable {
-        long startTime = System.currentTimeMillis();
 
         Object proceed = pjp.proceed();
         logger.warn("Aop logger is ok,log whatever you want");
