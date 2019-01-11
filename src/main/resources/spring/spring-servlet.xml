@@ -13,8 +13,11 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <mvc:annotation-driven>
+    <mvc:annotation-driven >
 
+        <mvc:argument-resolvers>
+            <bean class="com.practice.mvc.RequestContextHandlerMethodArgumentResolver" />
+        </mvc:argument-resolvers>
         <mvc:message-converters register-defaults="true">
             <bean class="com.practice.aop.BizMessageConverter">
             </bean>
