@@ -1,12 +1,7 @@
 package com.practice.dao;
 
 import com.practice.bean.Student;
-import com.practice.repo.provider.DynamicSelectProvider;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
-
-import java.util.Map;
 
 /**
  * Author: jinmeng

@@ -1,13 +1,11 @@
 package com.practice.aop;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.practice.bean.ServiceResult;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * @author jinmeng on 2018/9/28.
